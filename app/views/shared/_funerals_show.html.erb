@@ -1,0 +1,123 @@
+<h2 class="display-3"><%= @user.username.capitalize%>'s Funeral Preferences:</h2>
+
+<div class="jumbotron">
+
+  <div>
+    <div>
+      <h3 class="display-4">Service Type:</h3>
+      <p class="lead"><%= funeral.service_type %> </p>
+    </div>
+
+
+
+    <div>
+      <h3>Primary Speaker:</h3>
+      <p class="lead"> <%= funeral.officiant %> </p>
+    </div>
+
+    <div>
+      <h3>Additional Speakers:</h3>
+      <% if funeral.eulogist_expand == "" %>
+        <p class="lead"> None provided.</p>
+      <% else %>
+        <p class="lead"> <%= funeral.eulogist_expand %> </p>
+      <% end %>
+    </div>
+
+    <div>
+      <h3>Additional Serive Type Details:</h3>
+      <% if funeral.service_type_expand == "" %>
+        <p class="lead"> None provided.</p>
+      <% else %>
+        <p class="lead"> <%= funeral.service_type_expand %> </p>
+      <% end %>
+    </div>
+
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3 class="display-4">Disposition:</h3>
+    <p class="lead"> <%= funeral.disposition %> </p>
+  </div>
+  <div>
+    <h3>Additional Disposition Details:</h3>
+    <% if funeral.disposition_expand == "" %>
+      <p class="lead"> None provided.</p>
+    <% else %>
+      <p class="lead"> <%= funeral.disposition_expand %> </p>
+    <% end %>
+  </div>
+<hr class="my-4">
+  <div>
+    <% if funeral.funeral_home.name == "I am not sure at this time" %>
+      <h3 class="display-4">Funeral Home:</h3>
+      <p class="lead"> <%= funeral.funeral_home.name %> </p>
+    <% else %>
+      <h3 class="display-4">Funeral Home :</h3>
+      <p class="lead"> <%= funeral.funeral_home.name %> </p>
+      <h3>Funeral Home Phone:</h3>
+      <p class="lead"><%= funeral.funeral_home.phone %> </p>
+      <h3>Funeral Home Address:</h3>
+      <p class="lead"> <%= funeral.funeral_home.address %> </p>
+    <% end %>
+
+  </div>
+  <div>
+    <h3>Additional Funeral Home Details:</h3>
+    <% if funeral.funeral_home_expand == "" %>
+      <p class="lead"> None provided.</p>
+    <% else %>
+      <p class="lead"> <%= funeral.funeral_home_expand %> </p>
+    <% end %>
+  </div>
+<hr class="my-4">
+  <div>
+    <h3 class="display-4">Religion:</h3>
+    <p class="lead"> <%= funeral.religion.name %> </p>
+  </div>
+  <div>
+    <h3>Additional Religion Details:</h3>
+     <% if funeral.religion_expand == "" %>
+       <p class="lead"> None provided.</p>
+     <% else %>
+       <p class="lead"> <%= funeral.religion_expand %> </p>
+     <% end %>
+  </div>
+<hr class="my-4">
+  <div>
+    <h3 class="display-4">Financial Plan:</h3>
+    <p class="lead"> <%= funeral.financial_plan %> </p>
+  </div>
+  <div>
+    <h3>Additional Financial Plan Details:</h3>
+    <% if funeral.financial_plan_expand == "" %>
+       <p class="lead"> None provided.</p>
+    <% else %>
+      <p class="lead"> <%= funeral.financial_plan_expand %> </p>
+    <% end %>
+  </div>
+<hr class="my-4">
+  <div>
+    <h3 class="display-4">Other Wishes:</h3>
+    <% if funeral.general_expand == "" %>
+      <p class="lead top-margin"> None provided.</p>
+    <% else %>
+      <p class="lead top-margin"> <%= funeral.general_expand %> </p>
+    <% end %>
+  </div>
+
+  <% if @user.funeral.created_at == @user.funeral.updated_at %>
+    <p class="card-text"><small class="text-muted"> <%= @user.funeral.created_at.strftime("Created on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+  <% else %>
+    <p class="card-text"><small class="text-muted"> <%= @user.funeral.updated_at.strftime("Last updated on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+  <% end %>
+
+  <div class="button inline">
+  <%= render partial: "shared/crud_button", locals: {path: edit_user_funeral_path(@user, @user.funeral), method: "GET", value: "Edit Funeral Preferences"} %>
+  </div>
+  <div class="button inline">
+  <%= render partial: "shared/crud_button", locals: {path: user_funeral_path(@user, @user.funeral), method: "DELETE", value: "Delete Funeral Preferences"} %>
+  </div>
+</div>

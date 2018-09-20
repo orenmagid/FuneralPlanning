@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Planning Ahead</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="header">
+      <div id="std-header" class="row header-link">
+        <div class="col">
+          <a href="/"><h1>Planning Ahead</h1></a>
+        </div>
+        <% if session[:user_id] %>
+          <% if @page == "menu" %>
+          <% else %>
+            <div class="backlink col-1">
+              <a href="/home" class="btn btn-outline-light" role="button" aria-pressed="true">Menu</a>
+            </div>
+          <% end %>
+          <div class="backlink col-1">
+            <a href="/access/logout" class="btn btn-outline-light" role="button" aria-pressed="true">Logout</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <div id="main">
+        <% if !flash[:notice].blank? %>
+          <div class="alert alert-danger notice" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
+        <div id="content">
+
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <p>Project by August Giles and Oren Magid</p>
+    </div>
+  </body>
+</html>

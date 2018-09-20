@@ -1,0 +1,111 @@
+<div class="jumbotron">
+
+  <h2 class="display-4">Statistics</h2>
+  
+  <hr class="my-4">
+
+  <div class="row">
+    <div class="col">
+
+      <div class="card border-dark mb-3" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Our User's Top Ten Funeral Homes:</h5>
+          <p class="card-text">
+            <ul>
+            <% @funeral_hash[0..10].each do |name, count| %>
+             <li><%= name %>: <%= ((count.to_f/@total_count_of_funerals.to_f).round(2) * 100).to_i%>% </li>
+            <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3 top-margin" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Our User's Dispotion Preferences:</h5>
+          <p class="card-text">
+            <ul>
+              <% @disposition_hash.each do |name, count| %>
+                <li><%= name %>: <%= ((count.to_f/@total_count_of_users.to_f).round(2) * 100).to_i%>% </li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3 top-margin" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Our User's Disposition Preferences by Religion:</h5>
+          <p class="card-text">
+            <ul>
+              <% @disposition_by_religion.each do |religion, disp_hash| %>
+                <li><strong><%= religion %>: </strong></li>
+                <% disp_hash.each do |disp, count| %>
+                  <ul>
+                    <li><%= disp %>: <%= ((count.to_f/@religion_hash[religion].to_f).round(2) * 100).to_i%>% </li>
+                  </ul>
+                <% end %>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col">
+
+      <div class="card border-dark mb-3" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Distribution of Service Types Chosen On This Site:</h5>
+          <p class="card-text">
+            <ul>
+              <% @service_type_hash.each do |name, count| %>
+               <li><%= name %>: <%= ((count.to_f/@total_count_of_funerals.to_f).round(2) * 100).to_i%>% </li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3 top-margin" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Service Type by Religion:</h5>
+          <p class="card-text">
+            <ul>
+              <% @service_type_religion.each do |services, religion_hash| %>
+                <li><strong><%= services %>: </strong></li>
+                <% religion_hash.each do |religion, count| %>
+                  <ul>
+                  <li><%= religion %>: <%= ((count.to_f/@service_type_hash[services].to_f).round(2) * 100).to_i%>% </li>
+                  </ul>
+
+                <% end %>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="card border-dark mb-3 top-margin" style="max-width: 30rem;">
+        <div>
+          <h5 class="card-header">Service Type by Disposition:</h5>
+          <p class="card-text">
+            <ul>
+              <% @service_type_disposition.each do |services, disposition_hash| %>
+                <li><strong><%= services %>: </strong></li>
+                <% disposition_hash.each do |disposition, count| %>
+                  <ul>
+                  <li><%= disposition %>: <%= ((count.to_f/@service_type_hash[services].to_f).round(2) * 100).to_i%>% </li>
+                  </ul>
+
+                <% end %>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,19 @@
+<h2>Our Funeral Planning Site</h2>
+
+<div>
+
+  <p>People gather to remember and honor their departed loved ones in many ways. Of course, there is no one right or wrong way to do so. Many choices must be made, and many of these choices are often made without much guidance from those who are being remembered.</p>
+
+  <p>We have created this site to help you think about how you want to be remembered, and to help you leave guidance for those who will be tasked with making arrangements in the event of your passing. We'll walk you through many of the relevant choices and options to consider as you're thinking ahead. We'll also give you the opportunity to record other wishes or concerns. Once you have thought through and recorded your wishes, you'll be able to nominate reprentatives, and send your wishes to these representatives.</p>
+
+</div>
+
+<div class="inline">
+  <% if !session[:user_id] %>
+    <a href="/access/login" class="btn btn-outline-primary inline" role="button" aria-pressed="true">Login</a>
+  </div>
+
+  <div class="inline">
+    <a href="/users/new" class="btn btn-outline-primary inline" role="button" aria-pressed="true">Create New User</a>
+  <% end %>
+</div>

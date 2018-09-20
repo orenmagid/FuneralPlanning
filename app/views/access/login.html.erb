@@ -1,0 +1,31 @@
+
+<div class="">
+  <h2>Please Login</h2>
+</div>
+
+<div class="row">
+
+  <div class="login col">
+
+    <%= form_tag(access_attempt_login_path, :method => :post) do %>
+    <table>
+      <tr>
+        <td><%= text_field_tag(:username, params[:username], placeholder: "Username", class: "form-control") %></td>
+      </tr>
+      <tr>
+        <td><%= password_field_tag(:password, "", placeholder: "Password", class: "form-control") %></td>
+      </tr>
+      <tr>
+        <td><%= submit_tag("Log In", class: "btn btn-outline-primary inline top-margin-2") %></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+
+  <div class="col">
+    <p>Don't have an account yet? Create your account today!</p>
+
+      <a href="/users/new" class="btn btn-outline-primary" role="button" aria-pressed="true">Create New User</a>
+  </div>
+
+</div>

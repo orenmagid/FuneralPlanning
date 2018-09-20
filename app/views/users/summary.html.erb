@@ -1,0 +1,20 @@
+
+<div class="jumbotron">
+
+  <h1 class="display-2">User Summary</h1>
+
+
+
+
+  <%= link_to 'Print Summary Page', 'users_summary_path', :onclick => 'window.print();return false;'%>
+
+  <hr class="my-4">
+
+  <%= render  "contacts/list_user_contacts" %>
+
+  <%= render partial: "shared/crud_button", locals: {path: new_user_contact_path(@user), method: "GET", value: "Create a New Contact"} %>
+
+  <hr class="my-4">
+
+  <%= render partial: "shared/funerals_show.html.erb", locals: { funeral: @funeral } %>
+</div>

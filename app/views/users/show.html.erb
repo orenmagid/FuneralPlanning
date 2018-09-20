@@ -1,0 +1,27 @@
+
+<div class="container-fluid">
+  <h2 class="display-4"> <%= @user.username.capitalize %>'s Homepage</h2>
+
+  <div class="card-deck top-margin">
+    <% if @user.contacts.empty? && !@user.funeral%>
+      <%= render partial: "users/start_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/view_funeral_statistics_card.html.erb", locals: { object: @user } %>
+
+    <% elsif !@user.contacts.empty? && !@user.funeral%>
+      <%= render partial: "users/create_funeral_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/view_contacts_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/view_funeral_statistics_card.html.erb", locals: { object: @user } %>
+
+    <% elsif @user.contacts.empty? && @user.funeral%>
+      <%= render partial: "users/view_funeral_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/create_contacts_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/view_funeral_statistics_card.html.erb", locals: { object: @user } %>
+
+    <% elsif !@user.contacts.empty? && @user.funeral%>
+      <%= render partial: "users/summary_card.html.erb", locals: { object: @user } %>
+      <%= render partial: "users/view_funeral_statistics_card.html.erb", locals: { object: @user } %>
+
+    <% end %>
+
+  </div>
+</div>

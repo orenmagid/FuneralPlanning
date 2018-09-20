@@ -1,0 +1,7 @@
+<%= render  "contacts/list_user_contacts" %>
+
+<div class="top-margin">
+
+<%= render partial: "shared/crud_button", locals: {path: new_user_contact_path(@user), method: "GET", value: "Create a New Contact"} %>
+
+</div>

@@ -1,0 +1,26 @@
+<h2 class="display-3"><%= @user.username%>'s Contacts:</h3>
+
+<div class="jumbotron">
+
+  <div class="card-deck">
+    <% @user.contacts.each do |contact| %>
+    <% if @user.contacts.count == 1 %>
+      <div class="card contact-cards col-4">
+    <% else %>
+      <div class="card contact-cards">
+    <%end %>
+      <%= contact.name %> // Email: <%= contact.email %>
+      <% if contact.created_at == contact.updated_at %>
+        <p class="card-text"><small class="text-muted"> <%= contact.created_at.strftime("Created on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+      <% else %>
+        <p class="card-text"><small class="text-muted"> <%= contact.updated_at.strftime("Last updated on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+      <% end %>
+
+      <%= render partial: "shared/crud_button", locals: {path: edit_user_contact_path(@user, contact), method: "GET", value: "Edit Contact", class: "inline"} %>
+
+
+      <%= render partial: "shared/crud_button", locals: {path: user_contact_path(@user, contact), method: "DELETE", value: "Delete Contact", class: "inline"} %><br>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+
+<%= form_for ([user, funeral])  do |f| %>
+
+<div>
+    <h3 class="display-4">Service Type</h3>
+    <p class="lead">A service or gathering is typically the primary time where people get together to remember. These gatherings usually have an officiant and a few speakers. Members of the clergy often play the role of officiant, but that is not required.If you're not sure about what services are typically held, you can begin learning more about your options <a href="http://www.nfda.org/consumer-resources/planning-a-funeral/service-options-types-of-tributes" target=”_blank”>here</a>. </p>
+    <div class="form-group-row top-margin">
+      <%= f.label :service_type, "Do you have a service preference?" %>
+      <%= f.select(:service_type, options_for_select(['Unspecified', 'Traditional Funeral', 'Viewing Only', 'Graveside Only', 'Memorial Service', 'Casual Gathering','No Service'], selected: @funeral.service_type), class: "form-control") %>
+    </div>
+    <div class="form-group-row top-margin">
+      <%= f.label :officiant, "Who might be the officiant or primary speaker?" %>
+      <%= f.text_field :officiant %>
+    </div>
+    <div class="top-margin">
+      <p>Who else would you like to have speak?</p>
+      <%= f.text_area :eulogist_expand, class: "form-control"%>
+    </div>
+    <div class="top-margin">
+      <p>Is there's anything else you'd like express about your service wishes?</p>
+      <%= f.text_area :service_type_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3 class="display-4">Disposition</h3>
+    <div class="lead">
+      <p>"Disposition" is the term for what will be done with one's body after passing&mdash;either cremation or burial.</p>
+      <p>With burial, one's is placed in a grave, most likely at a cemetery. Gravesites offer a place for family and friends to visit. Accompanying services are usually held at the gravesite. You also have the option of a green burial, an environmentally conscious way of handling burial practices. Visit the <a href="https://greenburialcouncil.org/home/what-is-green-burial/" target=”_blank”>Green Burial Council</a> for additional information.</p>
+      <p>Cremation reduces your remains to ash that can either be scattered, housed at a cemetery, or kept at home.</p>
+    </div>
+    <div class="top-margin">
+      <%= f.label :disposition, "Do you have a disposition preference?" %>
+      <%= f.select(:disposition, options_for_select(['Burial', 'Green Burial', 'Cremation', 'Donate Body to Science', 'Burial at Sea', 'Other - Specify Below'], selected: @funeral.disposition)) %>
+    </div>
+    <div class="top-margin">
+      <p>Use this space for any additional information about your disposition wishes. For example, if you'd like to be cremated, you can use this space to indicate what you'd like done with your remains.</p>
+      <%= f.text_area :disposition_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3 class="display-4">Funeral Home</h3>
+    <p class="lead">Funeral homes help families through many of these decisions. They typically handle disposition and also help plan and coordinate the service. It's probably a good idea to get in touch with some local funeral homes about how they can help you and your loved ones.</p>
+    <div class="form-group-row top-margin">
+      <%= f.label :funeral_home_id, "Do you already have a Funeral Home in mind?" %>
+      <%= f.collection_select(:funeral_home_id, FuneralHome.all, :id, :name, class: "form-control") %>
+    </div>
+    <div class="top-margin">
+      <p>If your funeral home of choice is not listed above, please tell us about it below.</p>
+      <%= f.fields_for :funeral_home, funeral.build_funeral_home do |funeral_home_fields| %>
+      <%= funeral_home_fields.text_field :name, placeholder: "Name" %>
+      <%= funeral_home_fields.text_field :phone, placeholder: "Phone Number" %>
+      <%= funeral_home_fields.text_field :address, placeholder: "Address" %>
+      <% end %>
+    </div>
+    <div class="top-margin">Use this space for any additional information about funeral home preferences or arrangements.</p>
+      <%= f.text_area :funeral_home_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3  class="display-4">Religion</h3>
+    <p class="lead">Religious preferences are often <a href="http://www.beliefnet.com/wellness/health/health-support/grief-and-loss/2001/05/transition-rituals.aspx" target=”_blank”>a significant factor</a> when it comes to end of life wishes. </p>
+    <div class="form-group-row top-margin">
+      <%= f.label :religion_id, "If you have a relevant religious preference, indicate that here." %>
+      <%= f.collection_select(:religion_id, Religion.all, :id, :name, class: "form-control") %>
+    </div>
+    <div class="top-margin">
+      <p>Use this space for any additional information about your religious beliefs relevant to your funeral arrangements.</p>
+      <%= f.text_area :religion_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3 class="display-4">Financial Arrangments</h3>
+    <p class="lead">Making advanced financial arrangements with a financial institution or a funeral home can help ease the pressure on those responsible for arranging your funeral. There are many different options for setting aside funds.<p>
+    <div class="form-group-row top-margin">
+      <%= f.label :religion_id, "If you have already made financial arrangements, please indicate this here." %>
+      <%= f.select(:financial_plan, options_for_select(['I have not yet made financial arrangements', 'Funeral Trust', 'Pre-Need Arrangments Through Funeral Home', 'Cemetery Plot', 'Funeral Insurance','Other - Specify Below']), class: "form-control") %>
+    </div>
+    <div class="top-margin">
+      <p>Use this space for any additional information about financial arrangements.</p>
+      <%= f.text_area :financial_plan_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <h3 class="display-4">Other Wishes</h3>
+    <p class="lead">Use this space for any additional information that we haven't already asked you about.</p>
+    <div>
+      <p>For example, you may have thoughts about music you'd like to accompany your service.</p>
+      <%= f.text_area :general_expand, class: "form-control"%>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div>
+    <%= f.submit "Submit Preferences", class: "btn btn-secondary btn-lg btn-block" %>
+  </div>
+
+<% end %>

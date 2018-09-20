@@ -1,0 +1,13 @@
+<div class="card">
+  <img src="https://i.imgur.com/OahQooV.jpg" height="200">
+  <div class="card-body">
+    <a href="<%= user_funeral_path(@user, @user.funeral) %>">
+      <h5 class="card-title">View or Edit Your Wishes</h5> </a>
+    <p class="card-text">You already documented, or at least begun to document, your funeral wishes. View or edit these wishes here.</p>
+    <% if @user.funeral.created_at == @user.funeral.updated_at %>
+      <p class="card-text"><small class="text-muted"> <%= @user.funeral.created_at.strftime("Created on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+    <% else %>
+      <p class="card-text"><small class="text-muted"> <%= @user.funeral.updated_at.strftime("Last updated on %m/%d/%Y, at %l:%M %p %Z") %></small></p>
+    <% end %>
+  </div>
+</div>

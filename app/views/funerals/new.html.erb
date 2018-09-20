@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h2 class="display-2">Making a Plan</h2>
+  <p class="lead">People gather to remember and honor their departed loved ones in many ways. Of course, there is no one right or wrong way to do so. Many choices must be made, and many of these choices are often made without much guidance from those who are being remembered.<br><br>We have created this site to help you think about how you want to be remembered, and to help you leave guidance for those who will be tasked with making arrangements in the event of your passing. In the following, we'll walk you through many of the relevant choices and options to consider as you're thinking ahead. We'll also give you the opportunity to record other wishes or concerns. Once you have thought through and recorded your wishes, you'll be able to nominate reprentatives, and send your wishes to these representatives.</p>
+
+  <hr class="my-4">
+
+  <div>
+    <%= render partial: "form.html.erb", locals: { funeral: @funeral, user: @user } %>
+  </div>
+</div>
