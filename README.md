@@ -8,17 +8,7 @@ It's an app to help people think about how you they want to be remembered, and t
 
 ## Demo
 
-You can check it out at https://funeral-planning-app.herokuapp.com/. Because Heroku's <a href="https://devcenter.heroku.com/articles/free-dyno-hours">free dyno hours</a> <a href="https://devcenter.heroku.com/articles/free-dyno-hours#dyno-sleeping">go to sleep</a> if the app hasn't been used in thirty minutes, the app may be unresponsive for about 30 secs when you first attempt to use it. Unfortunately, this applies to the frontend and the backend. So, it may be about thirty seconds before the webpage loads, and then another delay before the database is responsive.
-
-
-Feel free to use this dummy username and password combination to look around:
-
-<ul> 
-  
-  <li>Username: demo</li>
-  <li>Password: test</li>
-
-</ul>
+The demo is no longer available online.
 
 
 ## License
